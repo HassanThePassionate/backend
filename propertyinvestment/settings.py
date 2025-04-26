@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 from datetime import timedelta
 from dotenv import load_dotenv
-
+import dj_database_url
 
 load_dotenv()
 
@@ -93,14 +93,7 @@ WSGI_APPLICATION = 'propertyinvestment.wsgi.application'
 
 # For production, you can use this configuration:
 DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': os.getenv('DB_NAME', ''),
-        'USER': os.getenv('DB_USER', ''),
-        'PASSWORD': os.getenv('DB_PASSWORD', ''),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-    }
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
 
