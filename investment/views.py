@@ -15,7 +15,7 @@ class IsAdminUser(permissions.BasePermission):
 
 class PropertyViewSet(viewsets.ModelViewSet):
     serializer_class = PropertySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = []
     parser_classes = (JSONParser, MultiPartParser, FormParser)
 
     def get_queryset(self):
