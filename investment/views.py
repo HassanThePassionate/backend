@@ -11,11 +11,11 @@ from .serializers import PropertySerializer, PropertyPhotoSerializer, PropertyDo
 
 class IsAdminUser(permissions.BasePermission):
     def has_permission(self, request, view):
-        return request.user and request.user.role == 'admin'
+        return request.user and request.user.is_authenticated and request.user.role == 'admin'
 
 class PropertyViewSet(viewsets.ModelViewSet):
     serializer_class = PropertySerializer
-    permission_classes = []
+    permission_classes = [permissions.IsAuthenticated]
     parser_classes = (JSONParser, MultiPartParser, FormParser)
 
     def get_queryset(self):
